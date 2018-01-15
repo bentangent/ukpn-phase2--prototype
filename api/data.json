@@ -1,0 +1,16 @@
+{
+  "components" : [
+    {
+      "class": "first",
+      "title": "First Component",
+      "subtitle": "This is the first component from mock data",
+      "body": "<div class='bloop'>First Fake Content in a div</div>"
+    },
+    {
+      "class": "second",
+      "title": "Second Component",
+      "subtitle": "This is the second component from mock data",
+      "body": "<div class='bloop'>Second Fake Content in a div</div>"
+    }
+  ]
+}
