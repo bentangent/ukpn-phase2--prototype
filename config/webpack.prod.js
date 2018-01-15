@@ -6,12 +6,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const common = require('./webpack.common.js');
 
 const pathsToClean = [
-  'dist'
+  'dist/'
 ]
 
 const cleanOptions = {
-  root: path.join(__dirname, '../'),
-  dry: true
+  root: path.join(__dirname, '../')
 }
 
 module.exports = merge(common, {

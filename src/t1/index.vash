@@ -1,6 +1,5 @@
 @html.extend('layout', function(model) {
   @html.block('content', function(model) {
-    <p>Welcome to @model.title</p>
     @html.include('t1/partials/first.vash')
     @html.include('t1/partials/second.vash')
   })

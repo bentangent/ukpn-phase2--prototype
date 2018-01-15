@@ -3,14 +3,14 @@
 <head>
   <meta>
   <title>@model.title</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/global/css/global.css' />
   @html.block('styles')
 </head>
 <body>
+  <p>Welcome to @model.title</p>
   @html.block('content')
-  <script src="js/common.bundle.js"></script>
-  <script src="js/polyfill.bundle.js"></script>
-  <script src="js/app.bundle.js"></script>
+  <script src="/common/js/common.bundle.js"></script>
+  <script src="/global/js/global.bundle.js"></script>
   @html.block('scripts')
 </body>
 </html>
