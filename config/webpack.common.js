@@ -6,13 +6,13 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: {
-    app: './src/global/js/main.js',
+    global: './src/global/js/main.js',
     t1: './src/t1/js/entry.js'
   },
   output: {
     path: path.join(__dirname, '../dist'),
     publicPath: '/',
-    filename: 'js/[name].bundle.js'
+    filename: '[name]/js/[name].bundle.js'
   },
   module: {
     rules: [
@@ -93,11 +93,11 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: ['common'],
-      minChunks: Infinity,
+      minChunks: Infinity
     }),
     new ExtractTextPlugin({
       filename: (getPath) => {
-        return getPath('css/[name].css').replace('css/js', 'css');
+        return getPath('[name]/css/[name].css').replace('css/js', 'css');
       },
       allChunks: true,
       disable: process.env.NODE_ENV === 'development'

@@ -1,5 +1,5 @@
 import {ready} from '../../global/js/utils';
-import '../styles/scss/t1.scss';
+import '../styles/t1.scss';
 
 
 const init = () => {
