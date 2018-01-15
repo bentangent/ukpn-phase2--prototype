@@ -9,12 +9,19 @@
 
 ### Installation
 1. Install dependencies - `yarn`
-2. Start Express server - `yarn start`
+
+2. Run dev server - `yarn start`
+
+### Build
+* `yarn build` (will build everything into `/dist/`)
+
+
 
 ### Structure
 
 * `bin` - express server
-* `public` - build folder
+* `config` - Webpack config files (common, dev and prod)
+* `dist` - build folder
 * `routes` - local development only. Build a route when you need to create a new page. 
   * TODO: Pass backend OR mock data through to routes
 * `src`
