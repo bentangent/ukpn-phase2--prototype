@@ -20,6 +20,7 @@
 ### Structure
 
 * `bin` - express server
+* `api` - currently just mock `.json` data, hopefully to be replaced with an api from 3Chillies
 * `config` - Webpack config files (common, dev and prod)
 * `dist` - build folder
 * `routes` - local development only. Build a route when you need to create a new page. 
