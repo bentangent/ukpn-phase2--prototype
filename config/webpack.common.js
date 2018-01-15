@@ -3,20 +3,17 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
-    polyfill: ['babel-polyfill'],
     app: './src/global/js/main.js',
     t1: './src/t1/js/entry.js'
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
-    publicPath: '',
+    path: path.join(__dirname, '../dist'),
+    publicPath: '/',
     filename: 'js/[name].bundle.js'
   },
-  devtool: 'eval-source-map',
   module: {
     rules: [
       {
@@ -48,6 +45,7 @@ module.exports = {
       },
       {
         test: /\.(scss)$/,
+        exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           publicPath: '../',
@@ -93,22 +91,16 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['common'],
+      minChunks: Infinity,
+    }),
     new ExtractTextPlugin({
       filename: (getPath) => {
         return getPath('css/[name].css').replace('css/js', 'css');
       },
-      allChunks: true
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['common'],
-      minChunks: Infinity
-    }),
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        mangle: {
-          safari10: true
-        }
-      }
+      allChunks: true,
+      disable: process.env.NODE_ENV === 'development'
     })
   ]
 };

@@ -1,21 +1,30 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var sassMiddleware = require('node-sass-middleware');
+const path = require('path');
+const express = require('express');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const sassMiddleware = require('node-sass-middleware');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
-const config = require('./webpack.config.js');
-const compiler = webpack(config);
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const config = require('./config/webpack.dev.js');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+const index = require('./routes/index');
+const users = require('./routes/users');
 
-var app = express();
+// Environment
+const app           = express(),
+      DIST_DIR      = path.join(__dirname, 'dist'),
+      isDevelopment = process.env.NODE_ENV == 'development',
+      compiler      = webpack(config);
 
-app.use(webpackDevMiddleware(compiler)); 
+if (isDevelopment) {
+  app.use(webpackDevMiddleware(compiler)); 
+  app.use(require("webpack-hot-middleware")(compiler, {
+    log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
+  }));
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src'));
@@ -28,12 +37,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
+  src: __dirname,
+  dest: DIST_DIR,
   indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true
 }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(DIST_DIR));
 
 app.use('/', index);
 app.use('/users', users);
