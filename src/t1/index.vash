@@ -1,0 +1,13 @@
+@html.extend('layout', function(model) {
+  @html.block('content', function(model) {
+    <p>Welcome to @model.title</p>
+    @html.include('t1/partials/first.vash')
+    @html.include('t1/partials/second.vash')
+  })
+  @html.append('styles', function(model) {
+    <link rel='stylesheet' href='css/t1.css' />
+  })
+  @html.prepend('scripts', function() {
+    <script src="js/t1.bundle.js"></script>
+  }) 
+})
