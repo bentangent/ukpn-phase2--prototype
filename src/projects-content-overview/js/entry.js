@@ -1,5 +1,6 @@
 import {ready} from '../../global/js/utils';
-import '../styles/t1.scss';
+
+import '../styles/projects-content-overview.scss';
 
 const init = () => {
   const first = document.querySelector('.first');

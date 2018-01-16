@@ -1,0 +1,9 @@
+@html.extend('layout', function(model) {
+  @html.block('content', function(model) {
+    @model.paths.forEach(function(path) {
+      <li>
+        <a href="@path">@path</a>
+      </li>
+    })
+  })
+})

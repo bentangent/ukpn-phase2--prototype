@@ -1,0 +1,13 @@
+@html.extend('layout', function(model) {
+  @html.block('content', function(model) {
+    @model.components.forEach(function(component) {
+      @html.include('/landing-pages/partials/component.vash', component)
+    })
+  })
+  @html.append('styles', function(model) {
+    <link rel='stylesheet' href='/landing-pages/css/landing-pages.css' />
+  })
+  @html.append('scripts', function() {
+    <script src="/landing-pages/js/landing-pages.bundle.js"></script>
+  }) 
+})

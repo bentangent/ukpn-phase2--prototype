@@ -3,12 +3,11 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const entryPoints = require('./entryPoints');
+
 
 module.exports = {
-  entry: {
-    global: './src/global/js/main.js',
-    t1: './src/t1/js/entry.js'
-  },
+  entry: entryPoints.getEntryPoints(),
   output: {
     path: path.join(__dirname, '../dist'),
     publicPath: '/',
@@ -46,7 +45,7 @@ module.exports = {
       {
         test: /\.(scss)$/,
         exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
+        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
           fallback: 'style-loader',
           publicPath: '../',
           use: [
@@ -70,7 +69,7 @@ module.exports = {
               loader: 'sass-loader'
             }
           ]
-        })
+        }))
       },
       {
         test: /\.(png|jpg|svg)$/,
@@ -99,8 +98,8 @@ module.exports = {
       filename: (getPath) => {
         return getPath('[name]/css/[name].css').replace('css/js', 'css');
       },
-      allChunks: true,
-      disable: process.env.NODE_ENV === 'development'
-    })
+      allChunks: true
+    }),
+    new webpack.EnvironmentPlugin('NODE_ENV')
   ]
 };

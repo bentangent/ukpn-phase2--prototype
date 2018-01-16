@@ -10,8 +10,11 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./config/webpack.dev.js');
 
+/**
+ * Routes
+ * Add routes here for each path
+ */
 const index = require('./routes/index');
-const users = require('./routes/users');
 
 // Environment
 const app           = express(),
@@ -20,7 +23,7 @@ const app           = express(),
       compiler      = webpack(config);
 
 if (isDevelopment) {
-  app.use(webpackDevMiddleware(compiler)); 
+  app.use(webpackDevMiddleware(compiler));
   app.use(require("webpack-hot-middleware")(compiler, {
     log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
   }));
@@ -45,7 +48,6 @@ app.use(sassMiddleware({
 app.use(express.static(DIST_DIR));
 
 app.use('/', index);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

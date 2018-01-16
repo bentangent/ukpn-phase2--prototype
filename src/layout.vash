@@ -8,6 +8,7 @@
 </head>
 <body>
   <p>Welcome to @model.title</p>
+  <a href="/">All Components</a>
   @html.block('content')
   <script src="/common/js/common.bundle.js"></script>
   <script src="/global/js/global.bundle.js"></script>
