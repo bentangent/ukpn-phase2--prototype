@@ -30,7 +30,7 @@
     * JS
     * Partials (vash)
     * Styles (SCSS)
-  * `t1`, `t2`, `...` - Specific template
+  * `application-start-overview`, `contact-us`, `...` - Specific template
     * Only pulled into page where necessary
-    * Separate `tX.bundle.js` for each template
-    * Separate `tX.css` for each template
+    * Separate `X.bundle.js` for each template
+    * Separate `X.css` for each template
