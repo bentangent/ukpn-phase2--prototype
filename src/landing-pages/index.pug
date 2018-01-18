@@ -1,0 +1,11 @@
+extends ../layout.pug
+
+block content
+  each component in components
+    include partials/component.pug
+
+block append styles
+  link(rel='stylesheet' href='/landing-pages/css/landing-pages.css')
+
+block append scripts
+  script(src="/landing-pages/js/landing-pages.bundle.js")

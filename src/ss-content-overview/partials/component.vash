@@ -1,5 +1,0 @@
-<section class="@model.class">
-  <div>@model.title</div>
-  <div> @model.subtitle</div>
-  @html.raw(model.body)
-</section>

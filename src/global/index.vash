@@ -1,7 +1,0 @@
-@html.extend('layout', function(model) {
-  @html.block('content', function(model) {
-    @model.components.forEach(function(component) {
-      @html.include('./global/partials/component.vash', component)
-    })
-  }) 
-})

@@ -1,0 +1,11 @@
+extends ../layout.pug
+
+block content
+  each component in components
+    include partials/component.pug
+
+block append styles
+  link(rel='stylesheet' href='/projects-content-overview/css/projects-content-overview.css')
+
+block append scripts
+  script(src="/projects-content-overview/js/projects-content-overview.bundle.js")

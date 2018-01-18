@@ -1,0 +1,12 @@
+html
+  head
+    title #{title}
+    link(rel='stylesheet' href='/global/css/global.css')
+    block styles
+  body
+    p Welcome to #{title}
+    a(href='/') All Components
+    block content
+    block scripts
+      script(src="/common/js/common.bundle.js")
+      script(src="/global/js/global.bundle.js")

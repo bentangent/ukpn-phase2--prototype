@@ -1,0 +1,12 @@
+extends ./layout.pug
+
+block content
+  each path in paths
+    li
+      a(href=path) #{path}
+
+block append styles
+  link(rel='stylesheet' href='css/t1.css')
+
+block prepend scripts
+  script(src="js/t1.bundle.js")

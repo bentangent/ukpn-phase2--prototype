@@ -4,6 +4,8 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const entryPoints = require('./entryPoints');
+const data = require('../api/data.json');
+
 
 
 module.exports = {
@@ -38,6 +40,33 @@ module.exports = {
               presets: [
                 '@babel/preset-env'
               ]
+            }
+          }
+        ]
+      },
+      {
+        test: /\.pug$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'file-loader?name=[name]/html/[name].html'
+          },
+          {
+            loader: 'extract-loader'
+          },
+          {
+            loader: 'html-loader',
+            options: {
+              minimize: false,
+              conservativeCollapse: false,
+              collapseWhitespace: false
+            }
+          },
+          {
+            loader: 'pug-html-loader',
+            options: {
+              pretty: true,
+              data: data
             }
           }
         ]
